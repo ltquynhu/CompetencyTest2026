@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Linkedin" verbose="10">
+  <!-- Test -->
+  <test name="Jobs" preserve-order="true">
+    <classes>
+      <class name="testcases.jobs.EasyApplyTest"/>
+    </classes>
+  </test>
+
+  <!-- Listener -->
+  <listeners>
+    <listener class-name="listeners.AllureTestListener" />
+  </listeners>
+
+  <parameter name="browser" value="chrome"/>
+  <parameter name="server" value="test"/>
+</suite><!-- Suite -->

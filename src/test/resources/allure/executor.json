@@ -1,0 +1,8 @@
+{
+  "name": "GitHub Actions",
+  "type": "github",
+  "buildName": "LinkedIn Automation Build",
+  "buildUrl": "https://github.com/your-repo/actions",
+  "reportUrl": "https://your-report-link",
+  "buildOrder": 1
+}
