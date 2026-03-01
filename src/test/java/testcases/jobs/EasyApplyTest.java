@@ -29,7 +29,7 @@ public class EasyApplyTest extends BaseTest {
         verifyTrue(searchJobs.isApplicationOpened(), "Application form is open");
     }
 
-    // @Test(description = "Open application form successfully", priority = 1)
+    @Test(description = "Open application form successfully", priority = 1)
     public void id0001_openApplicationFormSuccessfully() {
 
         verifyTrue(searchJobs.isInputTextFieldDisplayed(), "All required text input fields are displayed");
@@ -37,7 +37,7 @@ public class EasyApplyTest extends BaseTest {
         verifyTrue(searchJobs.isUploadResumeDisplayed(), "Upload Resume section is displayed");
     }
 
-    // @Test(description = "Verify required field enforcement : Input & Dropdown fields",priority = 2)
+    @Test(description = "Verify required field enforcement : Input & Dropdown fields",priority = 2)
     public void id0002_verifyRequiredFieldEnforcement() {
         searchJobs.clearAllTextFields();
         verifyTrue(searchJobs.isWarningMessageDisplayedForTextInput(),
@@ -49,7 +49,7 @@ public class EasyApplyTest extends BaseTest {
 
     }
 
-    // @Test(description = "Verify required field enforcement : Upload resume",priority = 3)
+    @Test(description = "Verify required field enforcement : Upload resume",priority = 3)
     public void id0003_verifyRequiredFieldEnforcement() {
         verifyTrue(searchJobs.isUploadResumeDisplayed(), "Upload Resume section is displayed");
         searchJobs.clickNextButton();

@@ -4,13 +4,13 @@ import java.time.Duration;
 import java.util.List;
 import java.util.NoSuchElementException;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -21,6 +21,7 @@ public class BasePage {
     long shortTimeout = FrameworkConstants.SHORT_TIMEOUT;
 
     protected WebDriver driver;
+    JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -62,8 +63,6 @@ public class BasePage {
         return (new WebDriverWait(driver, Duration.ofSeconds(longTimeout)))
                 .until(ExpectedConditions.visibilityOfElementLocated(getByLocator(locator)));
     }
-
-
 
     protected boolean waitForElementInvisible(String locator) {
         // locator = String.format(locator);
@@ -118,7 +117,7 @@ public class BasePage {
         try {
             waitForElementClickable(locator).click();
         } catch (Exception e) {
-            waitForElementClickable(locator).click();
+            jsExecutor.executeScript("arguments[0].click();", getWebElement(locator));
         }
     }
 
@@ -127,7 +126,7 @@ public class BasePage {
         try {
             waitForElementClickable(locator, restParams).click();
         } catch (Exception e) {
-            waitForElementClickable(locator).click();
+            jsExecutor.executeScript("arguments[0].click();", getWebElement(locator));
         }
     }
 

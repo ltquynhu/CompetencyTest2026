@@ -305,15 +305,20 @@ public class BaseTest {
         ITestResult currentResult = Reporter.getCurrentTestResult();
         int failuresBefore = getFailureCount(currentResult);
 
-        Allure.step(caseName);
-
         try {
-            steps.run();
-            if (hasNewFailures(currentResult, failuresBefore)) {
-                collectCaseFailure(currentResult, caseName, createCaseCheckFailure());
-            }
-        } catch (Throwable throwable) {
-            collectCaseFailure(currentResult, caseName, throwable);
+            Allure.step(caseName, () -> {
+                try {
+                    steps.run();
+                    if (hasNewFailures(currentResult, failuresBefore)) {
+                        throw createCaseCheckFailure();
+                    }
+                } catch (Throwable throwable) {
+                    collectCaseFailure(currentResult, caseName, throwable);
+                    throw throwable;
+                }
+            });
+        } catch (Throwable ignore) {
+            // Case failure is already collected inside the parent step.
         }
     }
 
